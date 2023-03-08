@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { render } from "react-dom";
 import DefinitionItem from './DefinitionItem.jsx';
 
-const DefinitionList = ({ words, submitHandler }) => {
+const DefinitionList = ({ words, submitHandler, deleteHandler, handleEditChange }) => {
   const [formData, setFormData] = useState({name: '', definition: ''});
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ const DefinitionList = ({ words, submitHandler }) => {
         <button>submit</button>
       </form>
       {words.map((word, index) => {
-        return <DefinitionItem word={word} key={index}/>
+        return <DefinitionItem word={word} key={index} deleteHandler={deleteHandler} handleEditChange={handleEditChange}/>
       })}
     </div>
   );
