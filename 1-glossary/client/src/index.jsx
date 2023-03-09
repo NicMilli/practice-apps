@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import DefinitionList from './components/DefinitionList.jsx'
+import DefinitionList from './components/DefinitionList.jsx';
+import FormView from './components/FormView.jsx';
 
 
 const App = () => {
-  const [wordList, setWordList] = useState([{name: 'momo', definition: 'best kitty'}])
+  const [wordList, setWordList] = useState([{name: 'momo', definition: 'best kitty'}]);
+  const [searchList, setSearchList] = useState([])
 
   const submitHandler = (formData) => {
     //addInput to wordlist for now, db later
@@ -25,10 +27,21 @@ const App = () => {
     setWordList(list);
   }
 
+  const searchHandler = (term) => {
+    var tempList = [];
+    wordList.map((word) => {
+      if (word.name.includes(term)) {
+        tempList.push(word);
+      }
+    });
+    setSearchList(tempList);
+  };
+
   return (
     <div>
     <h1>Glossary App</h1>
-    <DefinitionList submitHandler={submitHandler} deleteHandler={deleteHandler} words={wordList} handleEditChange={handleEditChange}/>
+    <FormView submitHandler={submitHandler} searchHandler={searchHandler}/>
+    <DefinitionList deleteHandler={deleteHandler} words={searchList.length > 0 ? searchList : wordList} handleEditChange={handleEditChange}/>
   </div>
   )
 }
