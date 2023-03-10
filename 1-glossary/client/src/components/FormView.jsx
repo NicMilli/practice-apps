@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { render } from "react-dom";
 
-const FormView = ({ submitHandler, searchHandler}) => {
+const FormView = ({ submitHandler, searchHandler, cardMode, handleCardMode}) => {
   const [formData, setFormData] = useState({name: '', definition: ''});
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -42,6 +41,7 @@ const FormView = ({ submitHandler, searchHandler}) => {
         </label>
         <button>search</button>
       </form>
+      <button onClick={handleCardMode}> {cardMode ? 'Back to list view!' : 'Test Your Knowledge!'} </button>
     </div>
   );
 }

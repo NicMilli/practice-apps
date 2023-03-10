@@ -7,7 +7,8 @@ import axios from 'axios';
 
 const App = () => {
   const [wordList, setWordList] = useState([]);
-  const [searchList, setSearchList] = useState([])
+  const [searchList, setSearchList] = useState([]);
+  const [cardMode, setCardMode] = useState(false);
 
   useEffect(() => {
     getAllWords().then((result) => {
@@ -17,6 +18,10 @@ const App = () => {
 
   const getAllWords = () => {
     return axios.get('/words');
+  }
+
+  const toggleCardMode = (e) => {
+    setCardMode(prevCardMode => !prevCardMode);
   }
 
   const submitHandler = (formData) => {
@@ -68,8 +73,8 @@ const App = () => {
   return (
     <div>
     <h1>Glossary App</h1>
-    <FormView submitHandler={submitHandler} searchHandler={searchHandler}/>
-    <DefinitionList deleteHandler={deleteHandler} words={searchList.length > 0 ? searchList : wordList} handleEditChange={handleEditChange}/>
+    <FormView submitHandler={submitHandler} searchHandler={searchHandler} handleCardMode={toggleCardMode} cardMode={cardMode}/>
+    <DefinitionList deleteHandler={deleteHandler} words={searchList.length > 0 ? searchList : wordList} handleEditChange={handleEditChange} cardMode={cardMode}/>
   </div>
   )
 }
