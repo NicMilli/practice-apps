@@ -6,6 +6,7 @@ module.exports = {
       res.status(200);
       res.send(response);
     }).catch((e) => {
+      console.log(e)
       res.status(500);
       res.send('Error retrieving from the database')
     });
@@ -30,6 +31,15 @@ module.exports = {
   },
   deleteWord: function (req, res) {
     model.deleteWord(req.body).then((response) => {
+      res.status(200);
+      res.send(response);
+    }).catch((e) => {
+      res.status(500);
+      res.send('Error deleting from the database')
+    });
+  },
+  searchWord: function (req, res) {
+    model.searchWord(req.query.term).then((response) => {
       res.status(200);
       res.send(response);
     }).catch((e) => {

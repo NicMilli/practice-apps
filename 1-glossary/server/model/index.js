@@ -13,16 +13,33 @@ const Word = mongoose.model('Word', wordSchema);
 
 module.exports = {
   getAll: function() {
-    return Word.find();
+    return Word.find().then((response) => {
+      return response.sort((a, b) => {
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+    });
+    });
   },
   addWord: function(word) {
     const newWord = new Word(word);
     return newWord.save();
   },
-  editWord: function(word) {
-    return Word.findOneAndUpdate({name : word.name}, word);
+  editWord: function({previousItem, newItem}) {
+    return Word.findOneAndUpdate({name : previousItem.name}, newItem);
   },
   deleteWord: function(word) {
     return Word.deleteOne({name: word.name});
+  },
+  searchWord: function(term) {
+    return Word.find().then((response) => {
+      return response.filter(
+        (word) => word.name.includes(term)
+        ).sort((a, b) => {
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+    });
+    });
   },
 }

@@ -6,8 +6,8 @@ const DefinitionList = ({ words, deleteHandler, handleEditChange }) => {
 
   return (
     <div>
-      {words.map((word, index) => {
-        return <DefinitionItem word={word} key={index} deleteHandler={deleteHandler} handleEditChange={handleEditChange}/>
+      {words.map((word) => {
+        return <DefinitionItem word={word} key={word._id} deleteHandler={deleteHandler} handleEditChange={handleEditChange}/>
       })}
     </div>
   );
