@@ -1,8 +1,10 @@
 require("dotenv").config();
 const express = require("express");
+const router = require('./routes');
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+//const upload = multer();
 //var cors = require('cors')
 
 // Establishes connection to the database on server start
@@ -12,6 +14,8 @@ const app = express();
 
 // Adds `req.session_id` based on the incoming cookie value.
 // Generates a new session if one does not exist.
+app.use(express.json());
+
 app.use(sessionHandler);
 
 // Logs the time, session_id, method, and url of incoming requests.
@@ -19,6 +23,8 @@ app.use(logger);
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.use('/forms', router);
 
 /****
  *
@@ -28,8 +34,8 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
  *
  */
 
-app.get('*', (_, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, '../client/dist/')})
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/'))
 })
 
 //process.env.PORT
