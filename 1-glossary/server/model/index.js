@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/glossary');
+const {word} = require('../db.js');
+// mongoose.connect('mongodb://127.0.0.1:27017/glossary');
 
-const wordSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    unique: true
-  },
-  definition: String
-})
+// const wordSchema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     unique: true
+//   },
+//   definition: String
+// })
 
-const Word = mongoose.model('Word', wordSchema);
+// const Word = mongoose.model('Word', wordSchema);
 
 module.exports = {
   getAll: function() {
