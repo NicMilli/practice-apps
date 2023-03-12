@@ -9,19 +9,11 @@ import Home from './Home.jsx';
 
 function App() {
 
-  const handleClick = () => {
-    console.log('checkout')
-  }
-
-  const handleConfirm = () => {
-    console.log('confirm')
-  }
-
   return (
   <Router>
     <div>
     <Routes>
-      <Route exact path='/' element={<Home handleClick={handleClick}/>}/>
+      <Route exact path='/' element={<Home />}/>
       <Route path='/form1' element={<Form1 />} />
       <Route path='/form2' element={<Form2 />} />
       <Route path='/form3' element={<Form3 />} />

@@ -4,8 +4,7 @@ const router = require('./routes');
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
-//const upload = multer();
-//var cors = require('cors')
+const morgan = require('morgan')
 
 // Establishes connection to the database on server start
 const db = require("./db");
@@ -15,7 +14,7 @@ const app = express();
 // Adds `req.session_id` based on the incoming cookie value.
 // Generates a new session if one does not exist.
 app.use(express.json());
-
+app.use(morgan('dev'))
 app.use(sessionHandler);
 
 // Logs the time, session_id, method, and url of incoming requests.

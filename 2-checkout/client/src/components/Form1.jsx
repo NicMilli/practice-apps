@@ -25,9 +25,9 @@ const Form1 = () => {
   return (
   <div>
     <form method='post' onSubmit={handleSubmit}>
-      <input type='text' name='name' defaultValue='Name'/>
-      <input type='email' name='email' defaultValue='Email'/>
-      <input type='password' name='password' defaultValue='Password'/>
+      <input type='text' name='name' defaultValue='Name' required={true}/>
+      <input type='email' name='email' defaultValue='Email' required={true}/>
+      <input type='password' name='password' defaultValue='Password' required={true}/>
       <button type='submit'> <FaArrowRight/> </button>
     </form>
 

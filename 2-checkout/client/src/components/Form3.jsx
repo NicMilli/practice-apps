@@ -23,10 +23,10 @@ const Form3 = () => {
   return (
     <div>
     <form method='post' onSubmit={handleSubmit}>
-      <input type='text' name='cc' defaultValue='Credit Card #'/>
-      <input type='text' name='exp' defaultValue='Expiry'/>
-      <input type='text' name='cvv' defaultValue='CVV'/>
-      <input type='text' name='billzip' defaultValue='Billing ZIP'/>
+      <input type='text' name='cc' defaultValue='Credit Card #' required={true}/>
+      <input type='text' name='exp' defaultValue='Expiry' required={true}/>
+      <input type='text' name='cvv' defaultValue='CVV' required={true}/>
+      <input type='text' name='billzip' defaultValue='Billing ZIP' required={true}/>
       <button type='submit'> <FaArrowRight/> </button>
     </form>
 

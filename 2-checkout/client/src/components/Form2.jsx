@@ -24,12 +24,12 @@ const Form2 = () => {
     <div>
     <form method='post' onSubmit={handleSubmit}>
       <label> Shipping address:
-        <input type='text' name='line1' defaultValue='Addr line 1'/>
+        <input type='text' name='line1' defaultValue='Addr line 1' required={true}/>
         <input type='text' name='line2' defaultValue='Addr line 2'/>
-        <input type='text' name='city' defaultValue='City'/>
-        <input type='text' name='state' defaultValue='State'/>
-        <input type='number' name='zip' defaultValue='ZIP'/>
-        <input type='text' name='phoneNo' defaultValue='Phone number'/>
+        <input type='text' name='city' defaultValue='City' required={true}/>
+        <input type='text' name='state' defaultValue='State' required={true}/>
+        <input type='number' name='zip' defaultValue='ZIP' required={true}/>
+        <input type='text' name='phoneNo' defaultValue='Phone number' required={true}/>
       </label>
       <button type='submit'> <FaArrowRight/> </button>
     </form>

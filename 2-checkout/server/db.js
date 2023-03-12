@@ -20,7 +20,7 @@ db.connectAsync()
     )
   ).then(() => {
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS responses (user_id INT NOT NULL, name VARCHAR(50), email VARCHAR(20), password VARCHAR(20), line1 VARCHAR(20), line2 VARCHAR(20), city VARCHAR(20), zip VARCHAR(10), state VARCHAR(10), phoneNo BIGINT, cc INT, exp VARCHAR(10), cvv INT, billingZip INT, FOREIGN KEY (user_id) REFERENCES users(id))"
+      "CREATE TABLE IF NOT EXISTS responses (user_id INT NOT NULL, name VARCHAR(50), email VARCHAR(20), password VARCHAR(100), line1 VARCHAR(20), line2 VARCHAR(20), city VARCHAR(20), zip VARCHAR(10), state VARCHAR(10), phoneNo BIGINT, cc BIGINT, exp VARCHAR(10), cvv VARCHAR(100), billingZip INT, confirmation TINYINT DEFAULT 0, FOREIGN KEY (user_id) REFERENCES users(id))"
     )
   })
   .catch((err) => console.log(err));
