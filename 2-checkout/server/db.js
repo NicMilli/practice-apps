@@ -15,11 +15,11 @@ db.connectAsync()
   .then(() => console.log(`Connected to MySQL as id: ${db.threadId}`))
   .then(() =>
     // Expand this table definition as needed:
-    db.queryAsync(
+    return db.queryAsync(
       "CREATE TABLE IF NOT EXISTS users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, sessionId VARCHAR(50) UNIQUE)"
     )
   ).then(() => {
-    db.queryAsync(
+    return db.queryAsync(
       "CREATE TABLE IF NOT EXISTS responses (user_id INT NOT NULL, name VARCHAR(50), email VARCHAR(20), password VARCHAR(100), line1 VARCHAR(20), line2 VARCHAR(20), city VARCHAR(20), zip VARCHAR(10), state VARCHAR(10), phoneNo BIGINT, cc BIGINT, exp VARCHAR(10), cvv VARCHAR(100), billingZip INT, confirmation TINYINT DEFAULT 0, FOREIGN KEY (user_id) REFERENCES users(id))"
     )
   })
